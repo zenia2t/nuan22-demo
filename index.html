@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NUAN22</title>
+<link rel="stylesheet" href="styles.css?v=18">
+</head>
+<body>
+
+<div class="announce" id="announce">Envío gratis a partir de 90 € · Devoluciones en 30 días</div>
+
+<header class="header">
+  <a class="logo" href="#" id="logo">NUAN22</a>
+  <nav class="nav">
+    <a href="#coleccion">Colección</a>
+    <a href="#coleccion">Vestidos</a>
+    <a href="#coleccion">Punto</a>
+    <a href="#coleccion">Baño</a>
+    <a href="#ayuda">Atelier</a>
+  </nav>
+  <div class="header__actions">
+    <button id="search-btn">Buscar</button>
+    <button id="cart-btn">Carrito (<span id="cart-count">0</span>)</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero__media" id="hero-media"></div>
+    <div class="hero__cap">
+      <span class="micro">Nuan22 · Otoño 26</span>
+      <h1>Piezas para quedarse</h1>
+      <a href="#coleccion">Ver la colección</a>
+    </div>
+  </section>
+
+  <section class="manifesto">
+    <span class="micro">Nuan22 · Barcelona</span>
+    <p>Piezas pensadas para quedarse. Tejidos naturales y reciclados, patronaje sobrio y confección en talleres pequeños a menos de cien kilómetros del estudio.</p>
+  </section>
+
+  <section class="collection" id="coleccion">
+    <div class="collection__head">
+      <span class="micro" id="grid-count">9 piezas</span>
+      <div class="filters">
+        <button aria-current="true">Todo</button>
+        <button>Vestidos</button>
+        <button>Punto</button>
+        <button>Baño</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="diptych">
+    <figure>
+      <div class="frame" id="look-1"></div>
+      <figcaption>Editorial · Después de medianoche</figcaption>
+    </figure>
+    <figure>
+      <div class="frame" id="look-2"></div>
+      <figcaption>Editorial · Interiores</figcaption>
+    </figure>
+  </section>
+
+  <section class="help" id="ayuda">
+    <div>
+      <h2>Escríbenos.</h2>
+      <p>Tallas, envíos, cambios o el estado de un pedido. Contesta una persona del estudio, normalmente el mismo día.</p>
+    </div>
+    <div class="help__form">
+      <!-- ===== EMBED REAL DE KONVO AI ===== -->
+      <div data-konvoai-contact-form="org_01KTNNH5KE53F2GCWWPCP7JZD1/contact-1788785004"></div>
+      <script async src="https://help.k2.konvoai.com/embed.js"></script>
+      <!-- ================================== -->
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer__cols">
+    <div>
+      <h4>Newsletter</h4>
+      <p style="margin:0; font-size:12px; max-width:32ch; color:var(--ink-2)">Una carta al mes: nuevas piezas, editoriales y acceso anticipado.</p>
+      <form class="subscribe" id="subscribe">
+        <input type="email" placeholder="tu@correo.com" aria-label="Correo electrónico">
+        <button type="submit">Suscribirme</button>
+      </form>
+    </div>
+    <div>
+      <h4>Tienda</h4>
+      <ul><li>Novedades</li><li>Vestidos</li><li>Punto</li><li>Baño</li><li>Archivo</li></ul>
+    </div>
+    <div>
+      <h4>Ayuda</h4>
+      <ul><li>Guía de tallas</li><li>Envíos</li><li>Cambios y devoluciones</li><li>Cuidado de la prenda</li><li>Contacto</li></ul>
+    </div>
+    <div>
+      <h4>Estudio</h4>
+      <ul><li>Sobre Nuan22</li><li>Talleres</li><li>Materiales</li><li>Instagram</li></ul>
+    </div>
+  </div>
+  <div class="footer__note">
+    <span>© 2026 Nuan22 · Barcelona</span>
+    <span>Privacidad · Términos · Cookies</span>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="cart-drawer" aria-label="Carrito">
+  <div class="drawer__head">
+    <span>Carrito</span>
+    <button class="drawer__close" data-close aria-label="Cerrar">&times;</button>
+  </div>
+  <div class="drawer__body" id="cart-lines"></div>
+  <div class="drawer__foot" id="cart-foot" hidden>
+    <div class="totals"><span>Subtotal</span><span id="cart-total">0,00 €</span></div>
+    <div class="totals totals--muted"><span>Envío</span><span>Se calcula al finalizar</span></div>
+    <button class="btn btn--block" id="checkout-btn">Finalizar compra</button>
+  </div>
+</aside>
+
+<aside class="drawer" id="pdp-drawer" aria-label="Producto">
+  <div class="drawer__head">
+    <span>Detalle</span>
+    <button class="drawer__close" data-close aria-label="Cerrar">&times;</button>
+  </div>
+  <div class="drawer__body pdp" id="pdp-body"></div>
+  <div class="drawer__foot">
+    <button class="btn btn--block" id="pdp-add">Añadir al carrito</button>
+  </div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<button class="status" id="status" data-mode="mock" title="Clic para ocultar">
+  <span class="status__dot"></span><span id="status-text">Datos: mock</span>
+</button>
+
+<!-- ===========================================================
+     PLACEHOLDER de chat — NO es el producto. El widget real de
+     Konvo se carga más abajo. Este bloque solo se muestra con
+     ?widget=1, como respaldo visual si el real no arranca.
+     =========================================================== -->
+<div class="konvo" id="konvo-widget" hidden>
+  <div class="konvo__panel">
+    <div class="konvo__head">
+      <div class="konvo__avatar">N</div>
+      <div>
+        <div class="konvo__title">Atención Nuan22</div>
+        <div class="konvo__sub">Respondemos al instante</div>
+      </div>
+    </div>
+    <div class="konvo__thread" id="konvo-thread">
+      <div class="konvo__msg konvo__msg--bot">Hola 👋 Soy el asistente de Nuan22. Puedo ayudarte con tallas, seguimiento de pedidos o cambios.</div>
+      <div class="konvo__msg konvo__msg--user">Dudo entre la S y la M del Jersey Barca</div>
+      <div class="konvo__msg konvo__msg--bot">El Jersey Barca es holgado de patrón. Si sueles llevar una 38, la S te queda bien; si buscas más caída en el hombro, la M.<br>Los cambios de talla son gratuitos.</div>
+      <div class="konvo__chips">
+        <button class="konvo__chip">Ver guía de tallas</button>
+        <button class="konvo__chip">Seguir mi pedido</button>
+        <button class="konvo__chip">Hablar con una persona</button>
+      </div>
+    </div>
+    <div class="konvo__composer">
+      <input placeholder="Escribe tu mensaje…" aria-label="Mensaje">
+      <button class="konvo__send" aria-label="Enviar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 12h15M13 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+    <div class="konvo__foot">Con tecnología de Konvo AI</div>
+  </div>
+  <button class="konvo__launcher" id="konvo-launcher" aria-label="Abrir chat de ayuda">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 0 1-8 8H7l-3 3v-5.5A8 8 0 1 1 20 12z"/></svg>
+    <span class="konvo__badge">1</span>
+  </button>
+</div>
+
+
+<!-- ===========================================================
+     WIDGET DE CHAT REAL DE KONVO AI
+     canal: live_chat_b8b0571b-6752-455d-b970-4dac85b9e91a
+     Se autoinyecta en <head> y reintenta con backoff si falla.
+     =========================================================== -->
+<script>(function(){var n=0,M=5;function L(){var s=document.createElement("script");s.src="https://widget.k2.konvoai.com/widget.iife.js";s.async=true;s.setAttribute("data-konvoai-channel","live_chat_b8b0571b-6752-455d-b970-4dac85b9e91a");s.onerror=function(){s.remove();if(n++<M)setTimeout(L,Math.min(30000,1000*Math.pow(2,n)));};document.head.appendChild(s);}L();})();</script>
+
+<script src="config.js?v=6"></script>
+<script src="app.js?v=12"></script>
+</body>
+</html>
