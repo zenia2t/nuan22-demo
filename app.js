@@ -84,6 +84,10 @@ const SCENES = { hero: "img/hero.jpg", look1: "img/look-1.jpg", look2: "img/look
 const state = { products: [], cart: [], currency: "EUR", source: "mock" };
 
 const $  = (s) => document.querySelector(s);
+// En la web publicada no existe la pastilla de estado (es una ayuda de
+// desarrollo). Un hueco silencioso evita tener que tocar cada llamada.
+const NADA = new Proxy({}, { get: () => () => {}, set: () => true });
+const $s = (sel) => document.querySelector(sel) || NADA;
 const $$ = (s) => Array.from(document.querySelectorAll(s));
 
 const money = (amount, currency = state.currency) =>
@@ -376,7 +380,7 @@ function wire() {
     toast("Filtros no incluidos en la demo");
   }));
 
-  $("#status").addEventListener("click", (e) => (e.currentTarget.hidden = true));
+  $s("#status").addEventListener("click", (e) => (e.currentTarget.hidden = true));
 
   /* chat flotante (placeholder) */
   const konvo = $("#konvo-widget");
@@ -427,18 +431,18 @@ async function init() {
       state.source = "shopify";
       $("#logo").textContent = data.shopName;
       document.title = data.shopName;
-      $("#status").dataset.mode = "shopify";
-      $("#status-text").textContent = `Shopify · ${cfg.domain}`;
+      $s("#status").dataset.mode = "shopify";
+      $s("#status-text").textContent = `Shopify · ${cfg.domain}`;
     } catch (err) {
       state.products = MOCK.map((p) => ({ available: true, ...p }));
-      $("#status").dataset.mode = "error";
-      $("#status-text").textContent = `Shopify falló → mock (${err.message})`;
+      $s("#status").dataset.mode = "error";
+      $s("#status-text").textContent = `Shopify falló → mock (${err.message})`;
       console.warn("[nuan22] Storefront API:", err);
     }
   } else {
     state.products = MOCK.map((p) => ({ available: true, ...p }));
-    $("#status").dataset.mode = "mock";
-    $("#status-text").textContent = "Datos: mock (sin Shopify)";
+    $s("#status").dataset.mode = "mock";
+    $s("#status-text").textContent = "Datos: mock (sin Shopify)";
   }
 
   renderGrid();
@@ -446,7 +450,7 @@ async function init() {
   wire();
 
   /* flags de captura */
-  if (FLAGS.get("clean") === "1") $("#status").hidden = true;
+  if (FLAGS.get("clean") === "1") $s("#status").hidden = true;
 
   const w = FLAGS.get("widget");
   if (w === "1" || w === "open") $("#konvo-widget").hidden = false;
